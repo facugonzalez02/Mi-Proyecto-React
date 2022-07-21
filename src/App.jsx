@@ -10,11 +10,7 @@ function App() {
 
   return (
     <div className="App">
-     <header>
-        <div>
-          <NavBar />
-        </div>
-      </header>
+      <NavBar />
       <ItemListContainer saludo={"Hola soy ItemListContainer"}></ItemListContainer>
     </div>
   )

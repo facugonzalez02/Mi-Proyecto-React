@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 const estilos = {marginTop: ' 40px ' ,display:' flex ', justifyContent: ' center '} 
 
-const ItemCount = ({ initial=1, stock=10, onAdd }) => {
+const ItemCount = ({ initial, stock, onAdd }) => {
     const [count, setCount] = useState(initial);
 
     const handleAdd = () => {

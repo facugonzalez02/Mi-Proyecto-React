@@ -1,18 +1,26 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { useState } from 'react' 
 import NavBar from './components/NavBar/NavBar'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <NavBar />
-      <ItemListContainer saludo={"Hola soy ItemListContainer"}></ItemListContainer>
-    </div>
+    <BrowserRouter>
+        <div className="App"> 
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<ItemListContainer></ItemListContainer>} />
+            <Route path="/detalle" element={<ItemDetailContainer></ItemDetailContainer>} />
+          </Routes>
+        </div>
+    </BrowserRouter>
   )
 }
 

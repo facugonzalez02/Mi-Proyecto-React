@@ -13,7 +13,6 @@ const ItemListContainer = ({ saludo }) => {
 
   const [loading, setLoading] = useState(true)
 
-
   useEffect(() => {
     getFetch() //mock de una consulta a una API
       .then((respuesta) => setProductos(respuesta))

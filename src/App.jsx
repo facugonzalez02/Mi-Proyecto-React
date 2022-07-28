@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { useState } from 'react' 
 import NavBar from './components/NavBar/NavBar'
@@ -16,8 +16,10 @@ function App() {
         <div className="App"> 
           <NavBar />
           <Routes>
-            <Route path="/" element={<ItemListContainer></ItemListContainer>} />
+            <Route index path="/" element={<ItemListContainer></ItemListContainer>} />
             <Route path="/detalle" element={<ItemDetailContainer></ItemDetailContainer>} />
+
+            <Route path='*' element={ <Navigate to='/' />} />
           </Routes>
         </div>
     </BrowserRouter>

@@ -1,16 +1,18 @@
-import React from 'react'
-import ItemCount from '../ItemCount/ItemCount'
+import Card from 'react-bootstrap/Card';
 
-const ItemDetail = () => {
-  const onAdd = (cant) => {
-    console.log(`La cantidad es:  ${cant}`)
-  }
+const ItemDetail = ({ producto }) => {
 
   return (
-    <div>
-      ItemDetail
-      <ItemCount initial={1} stock={10} onAdd={onAdd} />
-    </div>
+    <Card style={{ width: '18rem'}}>
+      <Card.Img variant="top" src={producto.foto} />
+      <Card.Body>
+        <Card.Title>{producto.categoria} - {producto.marca}</Card.Title>
+        <Card.Text>Cantidad por porción: {producto.cantidad}</Card.Text>
+        <Card.Text>30 Servicios</Card.Text>
+        <Card.Text>Proteina de suero de leche</Card.Text>
+        <Card.Text>Precio: ${producto.precio}</Card.Text>
+      </Card.Body>
+    </Card>
   )
 
 }

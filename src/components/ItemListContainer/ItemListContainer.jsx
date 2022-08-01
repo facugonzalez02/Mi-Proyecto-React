@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NavLink from "react-bootstrap/esm/NavLink";
+import { useParams } from "react-router-dom";
 import { getFetch } from "../../helpers/getFetch";
 import ItemCount from "../ItemCount/ItemCount";
 
@@ -13,17 +13,28 @@ const ItemListContainer = ({ saludo }) => {
 
   const [loading, setLoading] = useState(true)
 
+  const {categoriaId} = useParams()
+
   useEffect(() => {
-    getFetch() //mock de una consulta a una API
-      .then((respuesta) => setProductos(respuesta))
-      .catch( err => console.log(err))
-      .finally(() => setLoading(false));
-  }, []);
+    if (categoriaId) {
+      getFetch() // mock de una consulta a una api
+      .then(respuesta => setProductos(respuesta.filter(prod => prod.categoria === categoriaId))) 
+      .catch( error => console.log(error))
+      .finally(()=> setLoading(false))   
+
+  } else {
+      getFetch() // mock de una consulta a una api
+      .then(respuesta => setProductos(respuesta)) 
+      .catch( error => console.log(error))
+      .finally(()=> setLoading(false))          
+  }
+
+}, [categoriaId])
 
   const onAdd = (cant) => {
     console.log(`La cantidad seleccionada es: ${cant}`);
   };
-  console.log(productos);
+  console.log(categoriaId);
 
   return (
     <div>

@@ -15,18 +15,22 @@ const ItemCount = ({ initial, stock, onAdd }) => {
             setCount(count - 1)
         }
     }
-
+    
     const handleAddToCart = () => {
-        onAdd(count)
+        if (count < stock) {
+            onAdd(count)
+            
+        }
     }
+
   return (
     <div style={ estilos }>
-        <div className="card w-25 ">
-        <label>{ count }</label>
-        <br />
-        <button className='btn btn-outline-danger' onClick={handleAdd}> + </button>
-        <button className='btn btn-outline-danger' onClick={handleResta}> - </button>
-        <button className='btn btn-outline-success' onClick={handleAddToCart}> Agregar Carrito </button>
+        <div className="card w-50 ">
+            <label>{ count }</label>
+            <br />
+            <button className='btn btn-outline-dark' onClick={handleAdd}> + </button>
+            <button className='btn btn-outline-dark' onClick={handleResta}> - </button>
+            <button className='btn btn-outline-primary' onClick={handleAddToCart}> Agregar al Carrito </button>
         </div>
     </div>
   )

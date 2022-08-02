@@ -31,23 +31,15 @@ const ItemListContainer = ({ saludo }) => {
 
 }, [categoriaId])
 
-  const onAdd = (cant) => {
-    console.log(`La cantidad seleccionada es: ${cant}`);
-  };
   console.log(categoriaId);
 
   return (
     <div>
       {saludo}
 
-        { loading ?  <h1>Cargando...</h1> 
-          :
-          <ItemList productos={productos} />
-        }
-      
-      <ItemCount initial={1} stock={10} onAdd={onAdd} />
+      {loading ? <h1>Cargando...</h1> : <ItemList productos={productos} />}
     </div>
-  )
+  );
 }
 
 export default ItemListContainer;

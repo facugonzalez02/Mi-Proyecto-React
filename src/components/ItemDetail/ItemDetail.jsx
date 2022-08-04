@@ -1,16 +1,23 @@
 import { useState } from 'react';
-import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../Context/CartContext';
+
+import Card from 'react-bootstrap/Card';
 import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({ producto }) => {
-  const [toCart, setToCart] = useState(true)
+  const [isCount, setIsCount] = useState(true)
+
+  const {agregarCarrito, cartList} = useCartContext ()
 
 
   const onAdd = (cant) => {
-    console.log(`La cantidad seleccionada es: ${cant}`);
-    setToCart(false)
-  }
+    console.log(`La cantidad seleccionada es:  ${cant}`)
+    agregarCarrito( {producto, cantidad: cant})
+    setIsCount(false)
+}
+console.log(cartList)
+
 
   return (
     <Card style={{ width: '18rem'}}>
@@ -22,10 +29,18 @@ const ItemDetail = ({ producto }) => {
         <Card.Text>Proteina de suero de leche</Card.Text>
         <Card.Text>Precio: ${producto.precio}</Card.Text>      
         <div>
-          {toCart?
+          {isCount?
           <ItemCount initial={1} stock={10} onAdd={onAdd} />
             :
-            <Link to='/cart'><button type="button" className='btn btn-primary'>Ir al Carrito</button></Link>
+            <>
+            <Link to={'/cart'}>
+                <button className="btn btn-outline-success" >Terminar Compra</button>
+            </Link>
+            <Link to={'/'}>
+                <button className="btn btn-outline-primary" >Seguir Comprando</button>
+            </Link>
+            </>
+
           }
         </div>
       </Card.Body>

@@ -11,22 +11,39 @@ export const useCartContext = () => useContext(CartContext)
 
     const [cartList, setCartList] = useState ([])
 
-    const agregarCarrito = (prod) =>{
-        setCartList ([
-            ...cartList,
-            prod
-        ])
+    const  agregarCarrito = (prod) =>{
+        const idx = cartList.findIndex(producto => producto.id === prod.id ) // <- 
+        if (idx !== -1) {
+            // existe el producto en el carrito
+            // cartList[idx].cantidad +=   prod.cantidad    
+            let cant = cartList[idx].cantidad
+            cartList[idx].cantidad = cant + prod.cantidad
+
+            setCartList( [ ...cartList ] ) 
+        } else {
+            // no existe el producto en el carrito
+            setCartList([
+                ...cartList,
+                prod
+            ])
+        }
     }
+
 
     const vaciarCarrito = () => {
         setCartList([])
+    }
+
+    const eliminarProducto = (id) => {
+        setCartList( cartList.filter(prod => prod.id !== id ) )
     }
 
     return(
         <CartContext.Provider value={{
             cartList,
             agregarCarrito,
-            vaciarCarrito
+            vaciarCarrito,
+            eliminarProducto
         }}>
             { children }
         </CartContext.Provider>

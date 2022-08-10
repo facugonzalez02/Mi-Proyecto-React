@@ -12,10 +12,10 @@ const ItemDetail = ({ producto }) => {
 
 
   const onAdd = (cant) => {
-    console.log(`La cantidad seleccionada es:  ${cant}`)
-    agregarCarrito( {producto, cantidad: cant})
+    console.log(`la cantidad es: ${cant}`)
+    agregarCarrito( {...producto, cantidad: cant})
     setIsCount(false)
-}
+  }
 console.log(cartList)
 
 

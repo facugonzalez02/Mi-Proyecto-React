@@ -1,21 +1,34 @@
-import { Link } from 'react-router-dom'
 import { useCartContext } from '../../Context/CartContext';
 
 const Cart = () => {
 
-  const{cartList, vaciarCarrito} = useCartContext
+  const{cartList, vaciarCarrito, eliminarProducto} = useCartContext ()
   
   return (
     <div>
-      Cart
-      <br />
-      <Link to="/">
-        <button type="button" className="btn btn-danger">
-          Ir a Inicio
-        </button>
-      </Link>
-      <button onClick={vaciarCarrito}>Vaciar carrito</button>
-    </div>
+    <h1>Carrito</h1>
+
+    <ul>
+
+        {cartList.map(item => (
+          <li key={item.id}>
+            <div>
+            <img src={item.foto} alt="Foto de producto" className='w-25'/>
+            Suplemento: {item.categoria} - {item.cantidad}  Precio : ${item.precio}
+
+
+              <br />
+              Total: ${item.cantidad * item.precio}
+              <button onClick={() => eliminarProducto(item.id) }> X </button>
+            </div>
+          </li>                 
+
+      ))}
+    </ul>
+    <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+
+
+</div>
   );
 };
   

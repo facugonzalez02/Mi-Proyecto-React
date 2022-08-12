@@ -6,10 +6,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidget from './CartWidget/CartWidget';
 import { Link, NavLink } from 'react-router-dom';
+import { useCartContext } from '../../Context/CartContext';
 
 
 const NavBar = () => {
-
+  const {cantidadTotal} = useCartContext()
     return (
       <Navbar bg="light" expand="lg">
         <Container fluid>
@@ -41,6 +42,7 @@ const NavBar = () => {
             </Form>
           </Navbar.Collapse>
           <Link to='/cart'>
+          { cantidadTotal() !== 0 && cantidadTotal() }
             <CartWidget />
           </Link>
           

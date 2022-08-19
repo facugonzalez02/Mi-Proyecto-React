@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 import { getFetch } from "../../helpers/getFetch";
 
 
@@ -14,21 +15,29 @@ const ItemListContainer = ({ saludo }) => {
 
   const {categoriaId} = useParams()
 
-  useEffect(() => {
-    if (categoriaId) {
-      getFetch() // mock de una consulta a una api
-      .then(respuesta => setProductos(respuesta.filter(prod => prod.categoria === categoriaId))) 
-      .catch( error => console.log(error))
-      .finally(()=> setLoading(false))   
+  //traer un producto por id
+  useEffect(() =>{
+  const db = getFirestore()
+  const queryCollection = collection(db, 'items')
+  getDocs(queryCollection)
+  .then(resp => console.log(resp))
+  },[])
 
-  } else {
-      getFetch() // mock de una consulta a una api
-      .then(respuesta => setProductos(respuesta)) 
-      .catch( error => console.log(error))
-      .finally(()=> setLoading(false))          
-  }
-
-}, [categoriaId])
+//    useEffect(() => {
+//      if (categoriaId) {
+//        getFetch() // mock de una consulta a una api
+//        .then(respuesta => setProductos(respuesta.filter(prod => prod.categoria === categoriaId))) 
+//        .catch( error => console.log(error))
+//        .finally(()=> setLoading(false))   
+//
+//    } else {
+//        getFetch() // mock de una consulta a una api
+//        .then(respuesta => setProductos(respuesta)) 
+//        .catch( error => console.log(error))
+//        .finally(()=> setLoading(false))          
+//    }
+//
+//  }, [categoriaId])
 
   return (
     <div>

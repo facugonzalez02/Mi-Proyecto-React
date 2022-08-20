@@ -11,8 +11,7 @@ const Item = ({prod}) => {
                     <Card.Body>
                         <Card.Title>{`${prod.categoria}`} {`${prod.marca}`}</Card.Title>
                         <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                          $ {prod.precio}
                         </Card.Text>
                         <Link to={`/detalle/${prod.id}`}>
                           <Button variant="primary">Detalle</Button>

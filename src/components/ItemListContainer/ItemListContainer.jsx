@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { getFetch } from "../../helpers/getFetch";
 
 
@@ -15,13 +15,52 @@ const ItemListContainer = ({ saludo }) => {
 
   const {categoriaId} = useParams()
 
-  //traer un producto por id
-  useEffect(() =>{
-  const db = getFirestore()
-  const queryCollection = collection(db, 'items')
-  getDocs(queryCollection)
-  .then(resp => console.log(resp))
-  },[])
+  //traer todos los productos de una categoria
+  //useEffect(() =>{
+  //const db = getFirestore()
+  //const queryCollection = collection(db, 'items')
+  //getDocs(queryCollection)
+  //.then(resp => setProductos( resp.docs.map(prod => ({id: prod.id, ...prod.data() })) ))
+  //.catch( error => console.log(error))
+  //.finally(()=> setLoading(false))
+  //},[])
+
+  //TRAER TODOS LOS PRODUCTOS PERO FILTRADOS
+  //useEffect(()=>{
+    //const db = getFirestore()
+    //const queryCollection = collection(db, 'items')
+    //const queryFiltrada = query(queryCollection, where('precio','>', 10000))
+    //getDocs(queryFiltrada)
+    //.then(resp => setProductos( resp.docs.map(prod => ({id: prod.id, ...prod.data() })) ))
+    //.catch( error => console.log(error))
+    //.finally(()=> setLoading(false))
+  //}, [])
+
+  useEffect(()=>{
+    if (categoriaId) {
+    const db = getFirestore()
+    const queryCollection = collection(db, 'items')
+    const queryFiltrada = query(queryCollection, 
+      where ('categoria','==', categoriaId),
+
+      )
+    getDocs(queryFiltrada)
+    .then(response =>  setProductos( response.docs.map(productos=> ( { id: productos.id, ...productos.data() } ))))
+    .catch( error => console.log(error))
+    .finally(()=> setLoading(false)) 
+  } else {
+    const db = getFirestore()
+    const queryCollection = collection(db, 'items')
+    getDocs(queryCollection)
+    .then(response =>  setProductos( response.docs.map(productos=> ( { id: productos.id, ...productos.data() } ))))
+    .catch( error => console.log(error))
+    .finally(()=> setLoading(false)) 
+  }
+
+
+
+}, [categoriaId])
+  console.log(productos)
 
 //    useEffect(() => {
 //      if (categoriaId) {

@@ -1,7 +1,6 @@
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import { getFetch } from '../../helpers/getFetch';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
@@ -11,7 +10,7 @@ const ItemDetailContainer = () => {
 
   useEffect(()=>{
     const db = getFirestore()
-    const queryProducto = doc(db, 'items', 'MGbPUYXo2A8iiAAL0ePP')
+    const queryProducto = doc(db, 'items', detalleId)
     getDoc (queryProducto)
     .then(response => setProducto( { id: response.id, ...response.data() } ) )
   }, [])

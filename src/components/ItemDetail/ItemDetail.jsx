@@ -36,7 +36,7 @@ console.log(cartList)
             <Link to={'/cart'}>
                 <button className="btn btn-outline-success" >Terminar Compra</button>
             </Link>
-            <Link to={'/'}>
+            <Link to={'/list'}>
                 <button className="btn btn-outline-primary" >Seguir Comprando</button>
             </Link>
             </>

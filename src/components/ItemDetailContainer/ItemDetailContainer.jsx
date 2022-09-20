@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
   //console.log(producto);
   return (
     <div>
-      ItemDetailContainer
+      Dettalle de Producto
       <ItemDetail producto={producto}/>
     </div>
   )

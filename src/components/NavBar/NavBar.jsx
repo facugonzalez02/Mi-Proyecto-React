@@ -15,7 +15,7 @@ const NavBar = () => {
       <Navbar bg="light" expand="lg">
         <Container fluid>
           <Link to='/'>
-              <Navbar.Brand><img src='../../../imagenes/logo.PNG' alt="logo" className='w-60'/></Navbar.Brand>
+              <Navbar.Brand><img src='https://drive.google.com/uc?export=download&id=1KK2WBK-n-qu_raQUPN7Bf3g5ZsxJSYaQ' alt="logo" className='w-60'/></Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
